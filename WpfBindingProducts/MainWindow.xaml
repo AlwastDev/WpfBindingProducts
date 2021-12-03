@@ -1,0 +1,41 @@
+﻿<Window x:Class="WpfBindingProducts.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfBindingProducts"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="700">
+    <Grid Name="gridProducts" DataContext="{Binding ElementName=ListBox, Path=SelectedItem}" Loaded="gridProducts_Loaded">
+        <StackPanel Height="400" Width="300" Margin="10" HorizontalAlignment="Left">
+            <ListBox x:Name="ListBox"></ListBox>
+        </StackPanel>
+        <StackPanel  Height="400" Width="300" Margin="10" HorizontalAlignment="Right">
+            <DockPanel>
+            <StackPanel Width="150" HorizontalAlignment="Left">
+                <Label Margin="10" FontSize="12">Наименование</Label>
+                <Label Margin="10" FontSize="12">Цена</Label>
+                <Label Margin="10" FontSize="12">Кол-во</Label>
+                <Label Margin="10" FontSize="12">Реально</Label>
+                <Label Margin="10" FontSize="12">Штрих-код</Label>
+                <Label Margin="10" FontSize="12">Куплен?</Label>
+            </StackPanel>
+                <ItemsControl  >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <VirtualizingStackPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                </ItemsControl>
+                <StackPanel x:Name="dgProducts" Width="150" HorizontalAlignment="Right"  >
+                    <TextBox FontSize="12" Margin="0 10 0 8" Padding="0 0 0 10.5" Text="{Binding Path=Name}" ></TextBox>
+                    <TextBox FontSize="12" Margin="0 10 0 8" Padding="0 0 0 10.5" Text="{Binding Path=Price}"></TextBox>
+                    <TextBox FontSize="12" Margin="0 10 0 8" Padding="0 0 0 10.5" Text="{Binding Path=Amount}"></TextBox>
+                    <TextBox FontSize="12" Margin="0 10 0 8" Padding="0 0 0 10.5" Text="{Binding Path=Really}"></TextBox>
+                    <TextBox FontSize="12" Margin="0 10 0 8" Padding="0 0 0 10.5" Text="{Binding Path=Barcode}"></TextBox>
+                    <CheckBox HorizontalAlignment="Center" Margin="0 10 0 20" IsChecked="{Binding Path=Bought}" />
+                </StackPanel>
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</Window>
